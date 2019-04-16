@@ -9,14 +9,12 @@
     "react": "^16.8.6",
     "react-app-polyfill": "^0.2.2",
     "react-dom": "^16.8.6",
-    "react-redux": "^7.0.2",
-    "react-scripts": "2.1.8",
-    "redux": "^4.0.1"
+    "react-scripts": "2.1.8"
   },
   "lint-staged": {
-   "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
-     "prettier --single-quote --tab-width 4 --write",
-     "git add"
+    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "prettier --single-quote --tab-width 4 --write",
+      "git add"
     ]
   },
   "scripts": {
@@ -38,8 +36,5 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ],
-  "devDependencies": {
-    "redux-devtools": "^3.5.0"
-  }
+  ]
 }
