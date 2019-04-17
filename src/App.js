@@ -9,7 +9,7 @@ class App extends Component {
     render() {
         return (
             <Container>
-                <Route path="/" component={Home} />
+                <Route path="/" render={props => <Home {...props} />} />
             </Container>
         );
     }
