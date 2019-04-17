@@ -23,6 +23,10 @@
     color: #61dafb;
 }
 
+.container {
+    max-width: 768px;
+}
+
 @keyframes App-logo-spin {
     from {
         transform: rotate(0deg);
