@@ -1,22 +1,25 @@
 import React from 'react';
 
-import { Form, Button, Jumbotron } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
+import { CoGovButton } from './common';
 
 export const Login = () => {
     return (
-        <Jumbotron>
-            <Form>
-                <Form.Group controlId="formBasicEmail">
-                    <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" />
-                    <Form.Text className="text-muted">
-                        We'll never share your email with anyone else.
-                    </Form.Text>
-                </Form.Group>
-                <Button variant="primary" type="button">
-                    Login
-                </Button>
-            </Form>
-        </Jumbotron>
+        <Form>
+            <Form.Group controlId="formBasicEmail">
+                <h1>Please Enter Your Email</h1>
+                <Form.Control
+                    size="lg"
+                    type="email"
+                    placeholder="Enter email"
+                />
+            </Form.Group>
+            <CoGovButton
+                variant="primary"
+                type="button"
+                block={true}
+                label="Login"
+            />
+        </Form>
     );
 };
