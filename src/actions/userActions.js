@@ -1,7 +1,7 @@
 // TODO: Will be a async call to back-end for logging in user
 export const loginUser = async (store, email) => {
     store.setState({ status: 'LOADING' });
-    await new Promise(resolve => setTimeout(resolve, 3000));
+    await new Promise(resolve => setTimeout(resolve, 1500));
     localStorage.setItem('email', email);
     localStorage.setItem(
         'token',
