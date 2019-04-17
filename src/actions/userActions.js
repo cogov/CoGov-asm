@@ -11,5 +11,6 @@ export const loginUser = async (store, email) => {
 };
 
 export const updateGlobalAuth = (store, isLoggedIn) => {
-    store.setState({ isLoggedIn });
+    if (isLoggedIn) store.setState({ isLoggedIn });
+    else store.setState({ isLoggedIn, email: '' });
 };

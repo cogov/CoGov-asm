@@ -4,3 +4,7 @@ export const getFromLocalStorage = () => {
         email: localStorage.getItem('email')
     };
 };
+
+export const clearLocalStorage = () => {
+    localStorage.clear();
+};
