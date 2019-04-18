@@ -23,9 +23,11 @@ const VerifyCode = ({ ...props }) => {
 
     return (
         <React.Fragment>
-            <Form>
+            <h1 className="header-label-cogov">
+                Please Enter The Verification Code
+            </h1>
+            <Form className="main-cogov">
                 <Form.Group controlId="formBasicCode">
-                    <h1>Please Enter The Verification Code</h1>
                     <Form.Control
                         size="lg"
                         type="text"
@@ -37,16 +39,15 @@ const VerifyCode = ({ ...props }) => {
                     />
                 </Form.Group>
             </Form>
-            <div className="mt-20">
-                <CoGovButton
-                    variant="primary"
-                    type="button"
-                    block={true}
-                    label="Verify"
-                    disabled={!globalState.verificationCode} // TODO: validation for a valid code
-                    onClick={() => handleVerifyCode()}
-                />
-            </div>
+            <CoGovButton
+                className="btn-cogov"
+                variant="primary"
+                type="button"
+                block={true}
+                label="Verify"
+                disabled={!globalState.verificationCode} // TODO: validation for a valid code
+                onClick={() => handleVerifyCode()}
+            />
         </React.Fragment>
     );
 };

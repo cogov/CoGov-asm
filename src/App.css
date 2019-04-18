@@ -30,9 +30,21 @@
 
 .home {
     height: inherit;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+    position: relative;
+}
+
+.btn-cogov {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 10%;
+    margin: 0 auto;
+}
+.header-label-cogov {
+    margin-top: 5%;
+}
+.main-cogov {
+    margin-top: 40%;
 }
 
 @keyframes App-logo-spin {

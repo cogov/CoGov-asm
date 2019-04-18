@@ -25,9 +25,9 @@ const Login = ({ ...props }) => {
 
     return (
         <React.Fragment>
-            <Form>
+            <h1 className="header-label-cogov">Please Enter Your Email</h1>
+            <Form className="main-cogov">
                 <Form.Group controlId="formBasicEmail">
-                    <h1>Please Enter Your Email</h1>
                     <Form.Control
                         size="lg"
                         type="email"
@@ -37,16 +37,15 @@ const Login = ({ ...props }) => {
                     />
                 </Form.Group>
             </Form>
-            <div className="mt-20">
-                <CoGovButton
-                    variant="primary"
-                    type="button"
-                    block={true}
-                    label="Login"
-                    disabled={!globalState.email} // TODO: validation for a valid email
-                    onClick={() => handleLogin()}
-                />
-            </div>
+            <CoGovButton
+                className="btn-cogov"
+                variant="primary"
+                type="button"
+                block={true}
+                label="Login"
+                disabled={!globalState.email} // TODO: validation for a valid email
+                onClick={() => handleLogin()}
+            />
         </React.Fragment>
     );
 };

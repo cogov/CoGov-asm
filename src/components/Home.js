@@ -39,7 +39,11 @@ const Home = ({ ...props }) => {
 
     return (
         <React.Fragment>
-            <Navbar className="bg-light justify-content-between">
+            <Navbar
+                collapseOnSelect
+                expand="lg"
+                className="bg-light justify-content-between"
+            >
                 <Navbar.Brand>
                     <Link to="/">CoGov Assembly Interface</Link>
                 </Navbar.Brand>
