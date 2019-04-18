@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Link, Route } from 'react-router-dom';
+import { Link, Route, Switch, withRouter } from 'react-router-dom';
 import useGlobal from '../store';
 import {
     getFromLocalStorage,
@@ -7,9 +7,10 @@ import {
 } from '../utils/localStorageHelper';
 
 import { Navbar } from 'react-bootstrap';
-import { Main } from './';
+import Login from './Login';
+import VerifyCode from './VerifyCode';
 import { CoGovButton } from './common';
-export const Home = ({ ...props }) => {
+const Home = ({ ...props }) => {
     const [globalState, globalActions] = useGlobal();
     const {
         user: { updateGlobalAuth }
@@ -17,14 +18,23 @@ export const Home = ({ ...props }) => {
     const { isLoggedIn } = globalState;
     useEffect(() => {
         const { email, token } = getFromLocalStorage();
-        if (email && token) {
-            updateGlobalAuth(true);
+        if (token) {
+            updateGlobalAuth(true); // email is verified
+            props.history.push('/main');
         }
-    });
+        // returned function will be called on component unmount
+        return () => {
+            if (email && !token) {
+                clearLocalStorage();
+                updateGlobalAuth(false);
+            }
+        };
+    }, []);
 
     const handleLogout = () => {
         clearLocalStorage();
         updateGlobalAuth(false);
+        props.history.push('/');
     };
 
     return (
@@ -47,9 +57,23 @@ export const Home = ({ ...props }) => {
                     )}
                 </Navbar.Collapse>
             </Navbar>
-            <div className="mt-4">
-                <Route path="/" exact render={() => <Main {...props} />} />
+            <div className="home">
+                <Switch>
+                    <Route path="/" exact render={() => <Login {...props} />} />
+                    <Route
+                        path="/verify"
+                        exact
+                        render={() => <VerifyCode {...props} />}
+                    />
+                    <Route
+                        path="/main"
+                        exact
+                        render={() => <h1>Coming soon...</h1>}
+                    />
+                </Switch>
             </div>
         </React.Fragment>
     );
 };
+
+export default withRouter(Home);

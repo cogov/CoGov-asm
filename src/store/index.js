@@ -5,7 +5,9 @@ import * as actions from '../actions';
 const initialState = {
     status: '', // Will be used to show loader when required
     email: '',
-    isLoggedIn: false
+    verificationCode: '',
+    isLoggedIn: false,
+    isEmailVerified: true
 };
 
 const useGlobal = useGlobalHook(React, initialState, actions);
