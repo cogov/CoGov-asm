@@ -45,7 +45,9 @@ const Home = ({ ...props }) => {
                 className="bg-light justify-content-between"
             >
                 <Navbar.Brand>
-                    <Link to="/">CoGov Assembly Interface</Link>
+                    <Link to={isLoggedIn ? '/main' : '/'}>
+                        CoGov Assembly Interface
+                    </Link>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse className="justify-content-end">
