@@ -1,21 +1,24 @@
 import React, { useEffect } from 'react';
-import { Link, Route, Switch, withRouter } from 'react-router-dom';
+import { Link, Route, Switch, withRouter, Redirect } from 'react-router-dom';
 import useGlobal from '../store';
+import { ProtectedRoute } from './routeConfig/ProtectedRoutes';
 import {
     getFromLocalStorage,
     clearLocalStorage
 } from '../utils/localStorageHelper';
 
 import { Navbar } from 'react-bootstrap';
+import { Main } from './Main/index';
 import Login from './Login';
 import VerifyCode from './VerifyCode';
+import Welcome from './Welcome';
 import { CoGovButton } from './common';
 const Home = ({ ...props }) => {
     const [globalState, globalActions] = useGlobal();
     const {
         user: { updateGlobalAuth }
     } = globalActions;
-    const { isLoggedIn } = globalState;
+    const { isLoggedIn, selectedBackend, email: userEmail } = globalState;
     useEffect(() => {
         const { email, token } = getFromLocalStorage();
         if (token) {
@@ -65,16 +68,40 @@ const Home = ({ ...props }) => {
             </Navbar>
             <div className="home">
                 <Switch>
-                    <Route path="/" exact render={() => <Login {...props} />} />
+                    <Route
+                        path="/"
+                        exact
+                        render={() => <Welcome {...props} />}
+                    />
+                    <Route
+                        path="/login"
+                        exact
+                        render={() => {
+                            return selectedBackend && !isLoggedIn ? (
+                                <Login {...props} />
+                            ) : (
+                                <Redirect to={isLoggedIn ? '/main' : '/'} />
+                            );
+                        }}
+                    />
                     <Route
                         path="/verify"
                         exact
-                        render={() => <VerifyCode {...props} />}
+                        render={() => {
+                            return selectedBackend &&
+                                userEmail &&
+                                !isLoggedIn ? (
+                                <VerifyCode {...props} />
+                            ) : (
+                                <Redirect to={isLoggedIn ? '/main' : '/'} />
+                            );
+                        }}
                     />
-                    <Route
+                    />
+                    <ProtectedRoute
                         path="/main"
-                        exact
-                        render={() => <h1>Coming soon...</h1>}
+                        isLoggedIn={isLoggedIn}
+                        component={Main}
                     />
                 </Switch>
             </div>

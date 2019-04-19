@@ -7,7 +7,8 @@ const initialState = {
     email: '',
     verificationCode: '',
     isLoggedIn: false,
-    isEmailVerified: true
+    isEmailVerified: true,
+    selectedBackend: ''
 };
 
 const useGlobal = useGlobalHook(React, initialState, actions);
