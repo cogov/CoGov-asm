@@ -1,9 +1,11 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import useGlobal from '../store';
 
 import { Form } from 'react-bootstrap';
 import { CoGovButton } from './common';
+import { TOAST_MESSAGES } from '../constants';
 
 const VerifyCode = ({ ...props }) => {
     const [globalState, globalActions] = useGlobal();
@@ -13,12 +15,17 @@ const VerifyCode = ({ ...props }) => {
     } = globalActions;
     const handleVerifyCode = () => {
         const { verificationCode } = globalState;
-        verifyCode(verificationCode).then(({ isEmailVerified }) => {
-            if (isEmailVerified) {
-                updateGlobalAuth(true);
-                props.history.push('/main');
-            }
-        });
+        verifyCode(verificationCode)
+            .then(({ isEmailVerified }) => {
+                if (isEmailVerified) {
+                    updateGlobalAuth(true);
+                    toast.success(TOAST_MESSAGES.LOGGED_IN_SUCCESS);
+                    props.history.push('/main');
+                }
+            })
+            .catch(err => {
+                toast.error(err);
+            });
     };
 
     return (
