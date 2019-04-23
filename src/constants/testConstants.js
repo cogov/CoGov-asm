@@ -1,10 +1,1 @@
-export const users = [
-    {
-        email: 'admin@gmail.com',
-        emailVerified: true
-    },
-    {
-        email: 'user@gmail.com',
-        emailVerified: false
-    }
-];
+export const codes = ['111111', '222222', '333333', '444444'];

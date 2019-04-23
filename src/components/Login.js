@@ -5,25 +5,18 @@ import useGlobal from '../store';
 
 import { Form } from 'react-bootstrap';
 import { CoGovButton } from './common';
-import { TOAST_MESSAGES } from '../constants';
 
 const Login = ({ ...props }) => {
     const [globalState, globalActions] = useGlobal();
     const {
         field: { updateEmail },
-        user: { loginUser, updateGlobalAuth }
+        user: { loginUser }
     } = globalActions;
     const handleLogin = () => {
         const { email } = globalState;
         loginUser(email)
-            .then(({ isEmailVerified }) => {
-                if (isEmailVerified) {
-                    updateGlobalAuth(true);
-                    toast.success(TOAST_MESSAGES.LOGGED_IN_SUCCESS);
-                    props.history.push('/main');
-                } else {
-                    props.history.push('/verify');
-                }
+            .then(() => {
+                props.history.push('/verify');
             })
             .catch(err => {
                 toast.error(err);

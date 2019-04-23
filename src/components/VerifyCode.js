@@ -16,14 +16,15 @@ const VerifyCode = ({ ...props }) => {
     const handleVerifyCode = () => {
         const { verificationCode } = globalState;
         verifyCode(verificationCode)
-            .then(({ isEmailVerified }) => {
-                if (isEmailVerified) {
+            .then(res => {
+                if (res) {
                     updateGlobalAuth(true);
                     toast.success(TOAST_MESSAGES.LOGGED_IN_SUCCESS);
                     props.history.push('/main');
                 }
             })
             .catch(err => {
+                console.log(err);
                 toast.error(err);
             });
     };

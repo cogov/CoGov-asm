@@ -1,4 +1,6 @@
 import shortid from 'shortid';
+import { codes } from '../../constants/testConstants';
+
 // create new user (email is the identity)
 export const createUser = user => {
     const userData = {
@@ -19,4 +21,15 @@ export const doesEmailExists = email => {
     // check if email already exists
     if (users.length) return users.findIndex(u => u.email === email) !== -1;
     return false;
+};
+
+export const sendVerificationCode = email =>
+    new Promise(resolve => setTimeout(resolve, 200));
+
+export const verifyCode = code => {
+    if (code && codes.findIndex(c => c === code) > -1)
+        return Promise.resolve({
+            token: 'dfsdjajdgjagaj6776789dbsjdsjh______djdhajhda'
+        });
+    else return Promise.reject('Wrong verification code!');
 };

@@ -1,47 +1,34 @@
-import { users } from '../constants/testConstants';
-
+import { callMappedAction } from '../mapper/index';
 // TODO: Will be a async call to back-end for logging in user
 export const loginUser = async (store, email) => {
+    const { selectedBackend } = store.state;
+    if (!selectedBackend) return Promise.resolve();
     store.setState({ status: 'LOADING' });
-    await new Promise(resolve => setTimeout(resolve, 200));
-    // this will return from back-end api, also token will return only if email is verified.
-    const isEmailVerified = users.find(
-        e => e.email === email && e.emailVerified
-    );
-    if (isEmailVerified) {
-        localStorage.setItem('email', email);
-        localStorage.setItem(
-            'token',
-            'dfsdjajdgjagaj6776789dbsjdsjh______djdhajhda'
+    // send verification code
+    await callMappedAction(selectedBackend, 'sendVerificationCode', email);
+    localStorage.setItem('email', email);
+};
+
+export const verifyCode = async (store, code) => {
+    debugger;
+    const { selectedBackend } = store.state;
+    if (!selectedBackend) return Promise.resolve();
+    if (code) {
+        debugger;
+        store.setState({ status: 'LOADING' });
+        const { token } = await callMappedAction(
+            selectedBackend,
+            'verifyCode',
+            code
         );
-        // after verification code is sent or email is already verified
-        store.setState({ status: '' });
-        return {
-            isEmailVerified: true
-        };
-    } else {
-        // after verification code is sent or email is already verified
-        store.setState({ status: '' });
-        localStorage.setItem('email', email);
+        if (token) {
+            localStorage.setItem('token', token);
+            store.setState({ status: '' });
+        }
         return {
             isEmailVerified: false
         };
     }
-};
-
-export const verifyCode = async (store, code) => {
-    if (code) {
-        store.setState({ status: 'LOADING' });
-        await new Promise(resolve => setTimeout(resolve, 100));
-        localStorage.setItem(
-            'token',
-            'dfsdjajdgjagaj6776789dbsjdsjh______djdhajhda'
-        );
-        store.setState({ status: '' });
-    }
-    return {
-        isEmailVerified: true
-    };
 };
 
 export const updateGlobalAuth = (store, isLoggedIn) => {
