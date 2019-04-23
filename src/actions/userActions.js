@@ -10,24 +10,19 @@ export const loginUser = async (store, email) => {
 };
 
 export const verifyCode = async (store, code) => {
-    debugger;
-    const { selectedBackend } = store.state;
-    if (!selectedBackend) return Promise.resolve();
+    const { selectedBackend, email } = store.state;
+    if (!selectedBackend || !email) return Promise.resolve();
     if (code) {
-        debugger;
         store.setState({ status: 'LOADING' });
-        const { token } = await callMappedAction(
+        await callMappedAction(selectedBackend, 'verifyCode', code);
+        const { user, token } = await callMappedAction(
             selectedBackend,
-            'verifyCode',
-            code
+            'getUser',
+            email
         );
-        if (token) {
-            localStorage.setItem('token', token);
-            store.setState({ status: '' });
-        }
-        return {
-            isEmailVerified: false
-        };
+        localStorage.setItem('token', token);
+        store.setState({ status: '' });
+        return Promise.resolve(user);
     }
 };
 

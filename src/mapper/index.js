@@ -9,13 +9,11 @@ export const BACKENDS = {
         doesEmailExists: LOCAL_USER_ACTIONS.doesEmailExists,
         createUser: LOCAL_USER_ACTIONS.createUser,
         sendVerificationCode: LOCAL_USER_ACTIONS.sendVerificationCode,
-        verifyCode: LOCAL_USER_ACTIONS.verifyCode
+        verifyCode: LOCAL_USER_ACTIONS.verifyCode,
+        getUser: LOCAL_USER_ACTIONS.getUser
     }
 };
 
 export const callMappedAction = (selectedBackend, actionType, payload) => {
-    console.log(selectedBackend);
-    console.log(actionType);
-    console.log(payload);
     return BACKENDS[selectedBackend][actionType](payload);
 };

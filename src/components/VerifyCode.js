@@ -24,7 +24,6 @@ const VerifyCode = ({ ...props }) => {
                 }
             })
             .catch(err => {
-                console.log(err);
                 toast.error(err);
             });
     };

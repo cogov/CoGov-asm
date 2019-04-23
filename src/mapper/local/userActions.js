@@ -12,6 +12,10 @@ export const createUser = user => {
     // If no existing data, create an array
     const updatedUsers = existingUsers ? JSON.parse(existingUsers) : [];
     localStorage.setItem('users', JSON.stringify([...updatedUsers, userData]));
+    return Promise.resolve({
+        user: userData,
+        token: 'dfsdjajdgjagaj6776789dbsjdsjh______djdhajhda'
+    });
 };
 
 export const doesEmailExists = email => {
@@ -19,8 +23,21 @@ export const doesEmailExists = email => {
     const existingUsers = localStorage.getItem('users');
     const users = JSON.parse(existingUsers) || [];
     // check if email already exists
-    if (users.length) return users.findIndex(u => u.email === email) !== -1;
-    return false;
+    if (users.length) {
+        return users.find(u => u.email === email);
+    }
+    return undefined;
+};
+
+export const getUser = async email => {
+    //check if user exists already
+    const userWithEmail = doesEmailExists(email);
+    if (userWithEmail)
+        return Promise.resolve({
+            user: userWithEmail,
+            token: 'dfsdjajdgjagaj6776789dbsjdsjh______djdhajhda'
+        });
+    return createUser({ email });
 };
 
 export const sendVerificationCode = email =>
@@ -28,8 +45,6 @@ export const sendVerificationCode = email =>
 
 export const verifyCode = code => {
     if (code && codes.findIndex(c => c === code) > -1)
-        return Promise.resolve({
-            token: 'dfsdjajdgjagaj6776789dbsjdsjh______djdhajhda'
-        });
+        return Promise.resolve(true);
     else return Promise.reject('Wrong verification code!');
 };
