@@ -7,7 +7,6 @@ const initialState = {
     email: '',
     verificationCode: '',
     isLoggedIn: false,
-    isEmailVerified: true,
     selectedBackend: ''
 };
 

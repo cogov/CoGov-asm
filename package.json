@@ -12,7 +12,8 @@
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8",
-    "react-toastify": "^5.1.0"
+    "react-toastify": "^5.1.0",
+    "shortid": "^2.2.14"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
