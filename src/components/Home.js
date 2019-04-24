@@ -4,7 +4,8 @@ import useGlobal from '../store';
 import { ProtectedRoute } from './routeConfig/ProtectedRoutes';
 import {
     getFromLocalStorage,
-    clearLocalStorage
+    clearLocalStorage,
+    getUserByEmail
 } from '../utils/localStorageHelper';
 
 import { Navbar } from 'react-bootstrap';
@@ -20,9 +21,11 @@ const Home = ({ ...props }) => {
     } = globalActions;
     const { isLoggedIn, selectedBackend, email: userEmail } = globalState;
     useEffect(() => {
+        debugger;
         const { email, token } = getFromLocalStorage();
-        if (token) {
-            updateGlobalAuth(true); // email is verified
+        if (token && email) {
+            const user = getUserByEmail(email);
+            updateGlobalAuth(true, user); // user is loggedIn
             props.history.push('/main');
         }
         // returned function will be called on component unmount

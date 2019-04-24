@@ -2,12 +2,14 @@ import React from 'react';
 import useGlobalHook from '../utils/useGlobalHooks';
 import * as actions from '../actions';
 // app initial state
-const initialState = {
+export const initialState = {
     status: '', // Will be used to show loader when required
     email: '',
+    name: '',
     verificationCode: '',
     isLoggedIn: false,
-    selectedBackend: ''
+    selectedBackend: '',
+    user: {}
 };
 
 const useGlobal = useGlobalHook(React, initialState, actions);

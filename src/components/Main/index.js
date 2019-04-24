@@ -1,5 +1,10 @@
 import React from 'react';
+import Name from './Name';
 
 export const Main = () => {
-    return <div>Coming Soon...</div>;
+    return (
+        <div>
+            <Name />
+        </div>
+    );
 };

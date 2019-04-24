@@ -18,7 +18,7 @@ const VerifyCode = ({ ...props }) => {
         verifyCode(verificationCode)
             .then(res => {
                 if (res) {
-                    updateGlobalAuth(true);
+                    updateGlobalAuth(true, res);
                     toast.success(TOAST_MESSAGES.LOGGED_IN_SUCCESS);
                     props.history.push('/main');
                 }
