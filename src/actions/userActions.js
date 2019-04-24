@@ -27,10 +27,18 @@ export const verifyCode = async (store, code) => {
     }
 };
 
-export const updateName = async (store, name) => {
-    const { selectedBackend, email } = store.state;
-    if (!selectedBackend || !email) return Promise.resolve();
-    const user = await callMappedAction(selectedBackend, 'updateUser', name);
+export const updateUser = async (store, variables) => {
+    debugger;
+    const {
+        user: { id }
+    } = store.state;
+    const selectedBackend =
+        store.state.selectedBackend || localStorage.getItem('backend');
+    if (!selectedBackend || !id) return Promise.resolve();
+    return callMappedAction(selectedBackend, 'updateUser', {
+        id,
+        ...variables
+    });
 };
 
 export const updateGlobalAuth = (store, isLoggedIn, user) => {

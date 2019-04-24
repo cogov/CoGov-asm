@@ -11,22 +11,22 @@ const Name = ({ ...props }) => {
     const [globalState, globalActions] = useGlobal();
     const {
         field: { updateByKey },
-        user: { updateName }
+        user: { updateUser }
     } = globalActions;
-    // const handleVerifyCode = () => {
-    //     const { verificationCode } = globalState;
-    //     verifyCode(verificationCode)
-    //         .then(res => {
-    //             if (res) {
-    //                 updateGlobalAuth(true);
-    //                 toast.success(TOAST_MESSAGES.LOGGED_IN_SUCCESS);
-    //                 props.history.push('/main');
-    //             }
-    //         })
-    //         .catch(err => {
-    //             toast.error(err);
-    //         });
-    // };
+    const handleUpdateUser = () => {
+        const { name } = globalState;
+        updateUser({ name })
+            .then(res => {
+                if (res) {
+                    // updateGlobalAuth(true);
+                    // toast.success(TOAST_MESSAGES.LOGGED_IN_SUCCESS);
+                    // props.history.push('/main');
+                }
+            })
+            .catch(err => {
+                toast.error(err);
+            });
+    };
 
     return (
         <React.Fragment>
@@ -48,8 +48,8 @@ const Name = ({ ...props }) => {
                 type="button"
                 block={true}
                 label="Next"
-                // disabled={!globalState.verificationCode} // TODO: validation for a valid code
-                // onClick={() => handleVerifyCode()}
+                disabled={!globalState.name} // TODO: validation for a valid code
+                onClick={() => handleUpdateUser()}
             />
         </React.Fragment>
     );

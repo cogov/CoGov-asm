@@ -77,16 +77,25 @@ export const getUser = async email => {
     return createUser({ email });
 };
 
-export const updateUser = async email => {
-    //check if user exists already
+export const updateUser = async ({ id, ...rest }) => {
+    debugger;
     // Get existing users
     const existingUsers = localStorage.getItem('users');
     const users = JSON.parse(existingUsers) || [];
-    // check if email already exists
-    if (users.length) {
-        return users.find(u => u.email === email);
-    }
-    return undefined;
+    // check if id already exists
+    const user = users.find(u => u.id === id);
+    const userIndex = users.findIndex(u => u.id === id);
+    const updatedUsers = [
+        ...users.slice(0, userIndex),
+        {
+            ...user,
+            ...rest,
+            updatedAt: new Date()
+        },
+        ...users.slice(userIndex + 1)
+    ];
+    localStorage.setItem('users', JSON.stringify([...updatedUsers]));
+    return Promise.resolve(updatedUsers.find(u => u.id === id));
 };
 
 export const sendVerificationCode = email =>

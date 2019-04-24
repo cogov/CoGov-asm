@@ -10,7 +10,8 @@ export const BACKENDS = {
         createUser: LOCAL_USER_ACTIONS.createUser,
         sendVerificationCode: LOCAL_USER_ACTIONS.sendVerificationCode,
         verifyCode: LOCAL_USER_ACTIONS.verifyCode,
-        getUser: LOCAL_USER_ACTIONS.getUser
+        getUser: LOCAL_USER_ACTIONS.getUser,
+        updateUser: LOCAL_USER_ACTIONS.updateUser
     }
 };
 
