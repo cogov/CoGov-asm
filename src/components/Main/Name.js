@@ -18,8 +18,7 @@ const Name = ({ ...props }) => {
         updateUser({ name })
             .then(res => {
                 if (res) {
-                    // updateGlobalAuth(true);
-                    // toast.success(TOAST_MESSAGES.LOGGED_IN_SUCCESS);
+                    toast.success(TOAST_MESSAGES.PROFILE_UPDATE_SUCCESS);
                     // props.history.push('/main');
                 }
             })

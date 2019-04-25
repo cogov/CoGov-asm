@@ -21,7 +21,6 @@ const Home = ({ ...props }) => {
     } = globalActions;
     const { isLoggedIn, selectedBackend, email: userEmail } = globalState;
     useEffect(() => {
-        debugger;
         const { email, token } = getFromLocalStorage();
         if (token && email) {
             const user = getUserByEmail(email);

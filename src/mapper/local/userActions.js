@@ -78,7 +78,6 @@ export const getUser = async email => {
 };
 
 export const updateUser = async ({ id, ...rest }) => {
-    debugger;
     // Get existing users
     const existingUsers = localStorage.getItem('users');
     const users = JSON.parse(existingUsers) || [];
