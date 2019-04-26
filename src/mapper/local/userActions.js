@@ -1,5 +1,6 @@
 import shortid from 'shortid';
 import { codes } from '../../constants/testConstants';
+import { TOAST_MESSAGES } from '../../constants';
 
 // create new account
 export const createAccount = account => {
@@ -103,5 +104,5 @@ export const sendVerificationCode = email =>
 export const verifyCode = code => {
     if (code && codes.findIndex(c => c === code) > -1)
         return Promise.resolve(true);
-    else return Promise.reject('Wrong verification code!');
+    else return Promise.reject(TOAST_MESSAGES.INCORRECT_VERIFICATION_CODE);
 };

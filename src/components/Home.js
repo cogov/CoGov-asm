@@ -58,7 +58,7 @@ const Home = ({ ...props }) => {
                     <React.Fragment>
                         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                         <Navbar.Collapse className="justify-content-end">
-                            <Nav className="mr-auto">
+                            <Nav className="ml-auto">
                                 <Nav.Link onClick={() => handleLogout()}>
                                     Logout
                                 </Nav.Link>
