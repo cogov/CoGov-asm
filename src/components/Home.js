@@ -8,12 +8,12 @@ import {
     getUserByEmail
 } from '../utils/localStorageHelper';
 
-import { Navbar } from 'react-bootstrap';
+import { Navbar, Nav } from 'react-bootstrap';
 import { Main } from './Main/index';
 import Login from './Login';
 import VerifyCode from './VerifyCode';
 import Welcome from './Welcome';
-import { CoGovButton } from './common';
+
 const Home = ({ ...props }) => {
     const [globalState, globalActions] = useGlobal();
     const {
@@ -54,19 +54,18 @@ const Home = ({ ...props }) => {
                         CoGov Assembly Interface
                     </Link>
                 </Navbar.Brand>
-                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                <Navbar.Collapse className="justify-content-end">
-                    {isLoggedIn && (
-                        <Navbar.Text>
-                            <CoGovButton
-                                variant="info"
-                                type="button"
-                                label="Logout"
-                                onClick={() => handleLogout()}
-                            />
-                        </Navbar.Text>
-                    )}
-                </Navbar.Collapse>
+                {isLoggedIn && (
+                    <React.Fragment>
+                        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                        <Navbar.Collapse className="justify-content-end">
+                            <Nav className="mr-auto">
+                                <Nav.Link onClick={() => handleLogout()}>
+                                    Logout
+                                </Nav.Link>
+                            </Nav>
+                        </Navbar.Collapse>
+                    </React.Fragment>
+                )}
             </Navbar>
             <div className="home">
                 <Switch>

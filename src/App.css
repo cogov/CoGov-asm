@@ -34,17 +34,18 @@
 }
 
 .btn-cogov {
-    position: absolute;
+    max-width: 80%;
+    position: fixed;
     left: 0;
     right: 0;
-    bottom: 10%;
+    bottom: 5%;
     margin: 0 auto;
 }
 .header-label-cogov {
     margin-top: 5%;
 }
 .main-cogov {
-    margin-top: 40%;
+    margin-top: 20%;
 }
 
 @keyframes App-logo-spin {

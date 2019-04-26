@@ -21,7 +21,9 @@ const Welcome = ({ ...props }) => {
 
     return (
         <React.Fragment>
-            <h1 className="header-label-cogov">Please choose a back-end</h1>
+            <h1 className="header-label-cogov">
+                Please choose a back-end service
+            </h1>
             <Form className="main-cogov">
                 <Form.Group>
                     <Form.Control
@@ -31,8 +33,12 @@ const Welcome = ({ ...props }) => {
                         }
                     >
                         <option value="">Choose...</option>
-                        <option value="local_storage">Local storage</option>
-                        <option value="holo_chain">Holochain</option>
+                        <option value="local_storage">
+                            Holochain simulated
+                        </option>
+                        <option disabled value="holo_chain">
+                            Holochain
+                        </option>
                     </Form.Control>
                 </Form.Group>
             </Form>

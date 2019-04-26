@@ -31,7 +31,7 @@ const VerifyCode = ({ ...props }) => {
     return (
         <React.Fragment>
             <h1 className="header-label-cogov">
-                Please Enter The Verification Code
+                Please enter the verification code that was just emailed to you
             </h1>
             <Form className="main-cogov">
                 <Form.Group controlId="formBasicCode">

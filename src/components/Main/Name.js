@@ -29,7 +29,7 @@ const Name = ({ ...props }) => {
 
     return (
         <React.Fragment>
-            <h1 className="header-label-cogov">Please Enter Your Name</h1>
+            <h1 className="header-label-cogov">Please enter your name</h1>
             <Form className="main-cogov">
                 <Form.Group controlId="formBasicCode">
                     <Form.Control
