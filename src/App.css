@@ -34,7 +34,8 @@
 }
 
 .btn-cogov {
-    max-width: 80%;
+    max-width: 768px;
+    width: 80%;
     position: fixed;
     left: 0;
     right: 0;
