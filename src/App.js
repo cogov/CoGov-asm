@@ -10,7 +10,7 @@ import './App.css';
 
 class App extends Component {
     // required just to create a default currency collection
-    // if not already present on app inisialization.
+    // if not already present on app initialization.
     componentDidMount() {
         // Get existing currencies
         const existingCurrencies = localStorage.getItem('currencies');

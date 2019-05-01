@@ -36,7 +36,7 @@ const Welcome = ({ ...props }) => {
                         <option value="local_storage">
                             Holochain simulated
                         </option>
-                        <option disabled value="holo_chain">
+                        <option disabled value="holochain">
                             Holochain
                         </option>
                     </Form.Control>

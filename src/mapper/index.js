@@ -1,7 +1,7 @@
 import { USER as LOCAL_USER_ACTIONS } from './local/index';
 
 export const BACKENDS = {
-    // holo_chain: {
+    // holochain: {
     //     doesEmailExists: doesEmailExists,
     //     createUser: createUser
     // },
